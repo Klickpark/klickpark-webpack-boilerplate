@@ -1,0 +1,15 @@
+/* vendor */
+@import "../node_modules/bootstrap/dist/css/bootstrap-grid.css";
+
+/* utils */
+@import "./styles/utils/variables.css";
+
+/* base */
+@import "./styles/base/setup.css";
+@import "./styles/base/global.css";
+@import "./styles/base/typography.css";
+@import "./styles/base/helper.css";
+
+/* components */
+@import "./styles/components/header.css";
+@import "./styles/components/footer.css";

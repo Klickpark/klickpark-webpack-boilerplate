@@ -4,9 +4,11 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
+const ManifestPlugin = require('webpack-manifest-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const glob = require("glob")
 
 module.exports = {
-  mode: 'development',
   entry: './src/index.js',
   module: {
     rules: [{
@@ -18,7 +20,8 @@ module.exports = {
         use: [{
           loader: 'html-loader',
           options: {
-            minimize: true
+            minimize: false,
+            interpolate: true
           }
         }]
       },
@@ -28,8 +31,7 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            outputPath: 'images/',
-            publicPath: 'images/'
+            outputPath: 'images/'
           },
         }]
       },
@@ -39,31 +41,44 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            outputPath: 'fonts/',
-            publicPath: 'fonts/'
+            outputPath: 'fonts/'
           },
         }]
       },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true
+              sourceMap: true,
+              importLoaders: 1
             }
           },
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: true
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true
+              sourceMap: true,
+              plugins: (loader) => [
+                require('postcss-import')({
+                  root: loader.resourcePath
+                }),
+                require('postcss-preset-env')({
+                  stage: 1,
+                  browsers: [
+                    "> 1%",
+                    "last 2 versions"
+                  ]
+                }),
+                require('cssnano')({
+                  preset: 'default'
+                }),
+                require('@fullhuman/postcss-purgecss')({
+                  content: ['./src/**/*.html'],
+                  keyframes: true
+                })
+              ]
             }
           }
         ]
@@ -72,35 +87,55 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: ['env']
+          }
         }
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['dist/*']),
     new HtmlWebpackPlugin({
-      title: 'tris-webpack-boilerplate',
+      title: 'index.html',
       filename: 'index.html',
       template: './src/index.html',
-      inject: 'head'
-    }),
-    new HtmlWebpackPlugin({
-      title: 'tris-404-page',
-      filename: '404.html',
-      template: './src/404.html',
       inject: 'head'
     }),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer'
     }),
     new MiniCssExtractPlugin({
-      filename: 'webpack-bundle.css',
+      filename: 'style.css',
       chunkFilename: '[id].css'
-    })
+    }),
+    new FaviconsWebpackPlugin({
+      logo: './src/images/favicon.svg',
+      prefix: 'favicons/',
+      icons: {
+        twitter: true,
+        windows: true
+      }
+    }),
+    new ManifestPlugin()
   ],
   output: {
-    filename: 'webpack-bundle.js',
+    filename: 'script.js',
+    // publicPath: '/dist/',
     path: path.resolve(__dirname, 'dist')
   }
 };
+
+let templateFiles = glob.sync('./src/templates/*.html')
+templateFiles.forEach(function (element) {
+  let templatePathAndFilename = element
+  let templateFilename = element.substr(element.lastIndexOf('/') + 1)
+  let htmlWebpackOutputTemplate = new HtmlWebpackPlugin({
+    title: templateFilename,
+    filename: templateFilename,
+    template: templatePathAndFilename,
+    inject: 'head'
+  })
+  module.exports.plugins.push(htmlWebpackOutputTemplate)
+})

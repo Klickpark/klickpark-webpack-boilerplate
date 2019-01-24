@@ -1,0 +1,26 @@
+body,
+html {
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+.container-fluid {
+    max-width: 120rem;
+}
+
+.col-auto {
+    max-width: 100%;
+}

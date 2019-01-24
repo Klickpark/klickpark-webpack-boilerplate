@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Libre-Baskerville';
+    font-display: fallback;
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/LibreBaskerville-Regular.ttf') format('truetype');
+}
+
+@custom-media --sm (width >= 576px);
+@custom-media --md (width >= 768px);
+@custom-media --lg (width >= 992px);
+@custom-media --xl (width >= 1200px);
+
+@custom-media --burgermenu (width < 1200px);
+@custom-media --desktopmenu (width >= 1200px);
+
+:root {
+    --white: #ffffff;
+    --black: #000000;
+
+    --light: 300;
+    --regular: 400;
+    --bold: 700;
+}
