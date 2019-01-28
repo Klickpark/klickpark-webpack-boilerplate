@@ -26,6 +26,10 @@ module.exports = merge(common, {
               require('postcss-import')({
                 root: loader.resourcePath
               }),
+              require('postcss-url')({
+                from: '../../',
+                to: './'
+              }),
               require('postcss-preset-env')({
                 stage: 1,
                 browsers: [
