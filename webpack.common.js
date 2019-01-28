@@ -1,12 +1,12 @@
 const path = require('path');
+const glob = require('glob');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const glob = require("glob")
 
 module.exports = {
   entry: './src/index.js',
@@ -46,44 +46,6 @@ module.exports = {
         }]
       },
       {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-              importLoaders: 1
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-              plugins: (loader) => [
-                require('postcss-import')({
-                  root: loader.resourcePath
-                }),
-                require('postcss-preset-env')({
-                  stage: 1,
-                  browsers: [
-                    "> 1%",
-                    "last 2 versions"
-                  ]
-                }),
-                require('cssnano')({
-                  preset: 'default'
-                }),
-                require('@fullhuman/postcss-purgecss')({
-                  content: ['./src/**/*.html'],
-                  keyframes: true
-                })
-              ]
-            }
-          }
-        ]
-      },
-      {
         test: /\.js$/,
         exclude: /(node_modules)/,
         use: {
@@ -111,7 +73,7 @@ module.exports = {
       chunkFilename: '[id].css'
     }),
     new FaviconsWebpackPlugin({
-      logo: './src/images/favicon.svg',
+      logo: './src/images/favicon.png',
       prefix: 'favicons/',
       icons: {
         twitter: true,
