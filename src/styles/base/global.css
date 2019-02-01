@@ -17,10 +17,35 @@ body {
     outline: none;
 }
 
+.container .container,
+.container .container-fluid,
+.container-fluid .container,
+.container-fluid .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .container-fluid {
-    max-width: 120rem;
+    max-width: 90rem;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media (--lg) {
+    .container-fluid {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
 }
 
 .col-auto {
     max-width: 100%;
+}
+
+div[class*="col"] > *:first-child {
+    margin-top: 0;
+}
+
+div[class*="col"] > *:last-child {
+    margin-bottom: 0;
 }

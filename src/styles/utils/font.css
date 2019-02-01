@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'Libre-Baskerville';
+    font-display: fallback;
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/LibreBaskerville-Regular.ttf') format('truetype');
+}

@@ -65,9 +65,6 @@ module.exports = {
       template: './src/index.html',
       inject: 'head'
     }),
-    new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'defer'
-    }),
     new MiniCssExtractPlugin({
       filename: 'style.css',
       chunkFilename: '[id].css'
@@ -101,3 +98,7 @@ templateFiles.forEach(function (element) {
   })
   module.exports.plugins.push(htmlWebpackOutputTemplate)
 })
+
+module.exports.plugins.push(new ScriptExtHtmlWebpackPlugin({
+  defaultAttribute: 'defer'
+}))
