@@ -1,9 +1,9 @@
-/* vendor */
-@import "../node_modules/bootstrap/dist/css/bootstrap-grid.css";
+/* plugins */
 
 /* utils */
 @import "./styles/utils/font.css";
 @import "./styles/utils/variables.css";
+@import "./styles/utils/grid.css";
 
 /* base */
 @import "./styles/base/setup.css";

@@ -1,17 +1,18 @@
-const path = require('path');
-const glob = require('glob');
+const path = require('path')
+const glob = require('glob')
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.txt$/,
         use: 'raw-loader'
       },
@@ -32,7 +33,7 @@ module.exports = {
           options: {
             name: '[name].[ext]',
             outputPath: 'images/'
-          },
+          }
         }]
       },
       {
@@ -42,7 +43,7 @@ module.exports = {
           options: {
             name: '[name].[ext]',
             outputPath: 'fonts/'
-          },
+          }
         }]
       },
       {
@@ -84,7 +85,7 @@ module.exports = {
     // publicPath: '/dist/',
     path: path.resolve(__dirname, 'dist')
   }
-};
+}
 
 let templateFiles = glob.sync('./src/templates/*.html')
 templateFiles.forEach(function (element) {

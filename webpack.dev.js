@@ -1,7 +1,7 @@
-const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
+const merge = require('webpack-merge')
+const common = require('./webpack.common.js')
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = merge(common, {
   mode: 'development',
@@ -33,8 +33,8 @@ module.exports = merge(common, {
               require('postcss-preset-env')({
                 stage: 1,
                 browsers: [
-                  "> 1%",
-                  "last 2 versions"
+                  '> 1%',
+                  'last 2 versions'
                 ]
               }),
               require('cssnano')({
@@ -46,4 +46,4 @@ module.exports = merge(common, {
       ]
     }]
   }
-});
+})

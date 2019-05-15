@@ -3,5 +3,5 @@
     font-display: fallback;
     font-style: normal;
     font-weight: 400;
-    src: url('./fonts/LibreBaskerville-Regular.ttf') format('truetype');
+    src: url('../../fonts/LibreBaskerville-Regular.ttf') format('truetype');
 }

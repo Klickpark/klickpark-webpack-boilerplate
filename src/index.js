@@ -1,11 +1,13 @@
-require('offline-plugin/runtime').install();
+require('offline-plugin/runtime').install()
 
-import './index.html';
-import './index.css';
+// import $ from 'jquery'
 
-import scripts from './scripts/scripts'
+import './index.html'
+import './index.css'
 
-;(function() {
+import scripts from './scripts/components/script'
+
+;(function () {
   // execute here
   scripts()
-})();
+})()
