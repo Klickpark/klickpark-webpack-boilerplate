@@ -1,7 +1,7 @@
 const path = require('path')
 const glob = require('glob')
 
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
@@ -59,7 +59,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist/*']),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['dist/*']
+    }),
     new HtmlWebpackPlugin({
       title: 'index.html',
       filename: 'index.html',
