@@ -23,19 +23,56 @@ body {
 .container-fluid .container-fluid {
     padding-left: 0;
     padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .container-fluid {
     max-width: 90rem;
     padding-left: 15px;
     padding-right: 15px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 @media (--lg) {
     .container-fluid {
-        padding-left: 30px;
-        padding-right: 30px;
+        padding-left: 45px;
+        padding-right: 45px;
     }
+}
+
+.container-fluid.no-gutter,
+.container.no-gutter {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
+.container-fluid.no-gutter-x,
+.container.no-gutter-x {
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+}
+
+.container-fluid.no-gutter-y,
+.container.no-gutter-y {
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
+.row {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+}
+
+div[class*="col"] {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
 }
 
 .col-auto {
@@ -48,4 +85,16 @@ div[class*="col"] > *:first-child {
 
 div[class*="col"] > *:last-child {
     margin-bottom: 0;
+}
+
+.row .row,
+div[class*="col"] div[class*="col"] {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }

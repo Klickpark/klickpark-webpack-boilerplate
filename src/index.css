@@ -8,6 +8,7 @@
 /* base */
 @import "./styles/base/setup.css";
 @import "./styles/base/global.css";
+@import "./styles/base/input.css";
 @import "./styles/base/typography.css";
 @import "./styles/base/helper.css";
 

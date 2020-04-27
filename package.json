@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server --open --config webpack.dev.js",
     "net": "webpack-dev-server --open --port 8888 --hot --host 0.0.0.0",
     "build": "webpack --config webpack.prod.js --progress",
-    "deploy": "rsync -rz --progress --delete ./dist/* user@host:/path/"
+    "deploy": "rsync -rz --progress --delete ./dist/* sshuser@sshhost.klickpark.hosting:/var/www/clients/client1234/web1234/web/template/ && scp ./dist/style.css sshuser@sshhost.klickpark.hosting:/var/www/clients/client1234/web1234/web/application/themes/infusionathome/style.css && scp ./dist/script.js sshuser@sshhost.klickpark.hosting:/var/www/clients/client1234/web1234/web/application/themes/infusionathome/script.js"
   },
   "repository": {
     "type": "git",
@@ -48,5 +48,9 @@
     "webpack-manifest-plugin": "^2.0.4",
     "webpack-merge": "^4.2.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "aos": "^2.3.4",
+    "jquery": "^3.5.0",
+    "lity": "^2.4.1"
+  }
 }
